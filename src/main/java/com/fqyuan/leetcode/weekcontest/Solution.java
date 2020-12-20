@@ -1,5 +1,7 @@
 package com.fqyuan.leetcode.weekcontest;
 
+import org.junit.Test;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -131,4 +133,35 @@ public class Solution {
     }
     return ans;
   }
+
+  public String reformatNumber(String number) {
+    String tmp = number.replace("-","").replace(" ","");
+    StringBuilder sb = new StringBuilder();
+    while(tmp.length()>0){
+      if(tmp.length()>4){
+        sb.append(tmp.substring(0,3)).append("-");
+        tmp = tmp.substring(3);
+      }else if(tmp.length()==4){
+        sb.append(tmp.substring(0,2)).append("-");
+        tmp = tmp.substring(2);
+      }else if(tmp.length()==3){
+        sb.append(tmp.substring(0,3));
+        tmp = tmp.substring(3);
+      }else if(tmp.length() == 2){
+        sb.append(tmp.substring(0,2));
+        tmp = tmp.substring(2);
+      }
+    }
+    return sb.toString();
+  }
+
+  @Test
+  public void test1(){
+    System.out.println(reformatNumber("1-23-45 6"));
+    System.out.println(reformatNumber("123 4-567"));
+    System.out.println(reformatNumber("123 4-5678"));
+    System.out.println(reformatNumber("12"));
+    System.out.println(reformatNumber("--17-5 229 35-39475 "));
+  }
+
 }

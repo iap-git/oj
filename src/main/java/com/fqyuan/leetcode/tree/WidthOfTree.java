@@ -1,6 +1,8 @@
 package com.fqyuan.leetcode.tree;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 /**
@@ -37,5 +39,24 @@ public class WidthOfTree {
       this.depth = depth;
       this.pos = pos;
     }
+  }
+
+  int ans = 0;
+  private Map<Integer, Integer> map;
+
+  public int widthOfBinaryTree1(TreeNode root) {
+    map = new HashMap<>();
+    dfs(root, 0, 0);
+    return ans;
+  }
+
+  private void dfs(TreeNode node, int position, int depth) {
+    if (node == null) {
+      return;
+    }
+    map.computeIfAbsent(depth, x -> position);
+    ans = Math.max(ans, position - map.get(depth) + 1);
+    dfs(node.left, 2 * position, depth + 1);
+    dfs(node.right, 2 * position + 1, depth + 1);
   }
 }

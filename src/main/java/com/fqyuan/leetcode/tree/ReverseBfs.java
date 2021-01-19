@@ -13,13 +13,12 @@ public class ReverseBfs {
      * @return
      */
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        List<List<Integer>> reverseList = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
-            return reverseList;
+            return result;
         }
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        int depth = 0;
         while (!queue.isEmpty()) {
             int sz = queue.size();
             List<Integer> tmpList = new ArrayList<>();
@@ -33,13 +32,21 @@ public class ReverseBfs {
                     queue.offer(tmp.right);
                 }
             }
-            reverseList.add(new ArrayList<>(tmpList));
-            depth++;
+            result.add(0, tmpList);
         }
-        List<List<Integer>> result = new ArrayList<>();
-        for (int i = depth; i > 0; i--) {
-            result.add(reverseList.get(i));
-        }
+
         return result;
+    }
+
+    private void dfs(List<List<Integer>> list, TreeNode root, int level) {
+        if (root == null) {
+            return;
+        }
+        if (list.size() <= level) {
+            list.add(0, new LinkedList<>());
+        }
+        dfs(list, root.left, level + 1);
+        dfs(list, root.right, level + 1);
+        list.get(list.size() - level - 1).add(root.val);
     }
 }

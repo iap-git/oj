@@ -28,4 +28,20 @@ public class MinDifBst {
         list.add(root.val);
         inOrder(root.right, list);
     }
+
+    int result = Integer.MAX_VALUE;
+    int pre = result;
+
+    public int minDiffInBST(TreeNode root) {
+        if (root == null) {
+            return result;
+        }
+        minDiffInBST(root.left);
+        if (pre != Integer.MAX_VALUE) {
+            result = Math.min(result, root.val - pre);
+        }
+        pre = root.val;
+        minDiffInBST(root.right);
+        return result;
+    }
 }

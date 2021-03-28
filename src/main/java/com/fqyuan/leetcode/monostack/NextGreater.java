@@ -1,13 +1,12 @@
 package com.fqyuan.leetcode.monostack;
 
 import java.util.*;
-import java.util.concurrent.LinkedBlockingDeque;
 
 /** @author fqyuan */
 public class NextGreater {
 
   /**
-   * [4,1,2] [1,3,4,2]
+   * use stack to store element, adapted to be mono-stack [4,1,2] [1,3,4,2]
    *
    * <p>[-1,3,-1]
    *

@@ -30,18 +30,24 @@ public class NextGreater {
     return result;
   }
 
-  public int[] nextGreaterElements(int[] nums) {
-    int n = nums.length;
-    int[] result = new int[n];
-    Arrays.fill(result, -1);
-    Deque<Integer> stack = new ArrayDeque<>();
-    for (int i = 0; i < 2 * n; i++) {
-      while (!stack.isEmpty() && nums[i % n] > nums[stack.peek()]) {
-        int index = stack.pop();
-        result[index] = nums[i % n];
-      }
-      stack.push(i % n);
+    /**
+     * next greater ii, with mono-stack and 2n trick, i%n
+     *
+     * @param nums
+     * @return
+     */
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[n];
+        Arrays.fill(result, -1);
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < 2 * n; i++) {
+            while (!stack.isEmpty() && nums[i % n] > nums[stack.peek()]) {
+                int index = stack.pop();
+                result[index] = nums[i % n];
+            }
+            stack.push(i % n);
+        }
+        return result;
     }
-    return result;
-  }
 }

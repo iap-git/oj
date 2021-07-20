@@ -1,4 +1,4 @@
-package com.fqyuan.leetcode.queue;
+package com.fqyuan.leetcode.presum;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,5 +1,7 @@
 package com.fqyuan.leetcode.monostack;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class MaxSlidingQueue {
@@ -31,6 +33,31 @@ public class MaxSlidingQueue {
                 pq.poll();
             }
             result[i - k + 1] = pq.peek()[0];
+        }
+
+        return result;
+    }
+
+    public int[] maxSlidingWindowWithMoticQueue(int[] nums, int k) {
+        int[] result = new int[nums.length - k + 1];
+        Deque<Integer> deque = new LinkedList<>();
+        for (int i = 0; i < k; i++) {
+            while (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {
+                deque.pollLast();
+            }
+            deque.offerLast(i);
+        }
+        result[0] = nums[deque.peekFirst()];
+
+        for (int i = k; i < nums.length; i++) {
+            while (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {
+                deque.pollLast();
+            }
+            deque.offerLast(i);
+            while (!deque.isEmpty() && deque.peekFirst() <= i - k) {
+                deque.pollFirst();
+            }
+            result[i - k + 1] = nums[deque.peekFirst()];
         }
 
         return result;

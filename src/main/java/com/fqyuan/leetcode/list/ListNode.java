@@ -3,7 +3,7 @@ package com.fqyuan.leetcode.list;
 /** @author fqyuan */
 public class ListNode {
   int val;
-  ListNode next;
+    public ListNode next;
 
   ListNode() {}
 

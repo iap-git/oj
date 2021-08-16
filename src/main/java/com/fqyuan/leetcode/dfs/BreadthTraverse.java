@@ -6,12 +6,12 @@ public class BreadthTraverse {
   ;
   */
 
-  public Node connect(Node root) {
-    Node dum = new Node(-1);
+  public Node1 connect(Node1 root) {
+    Node1 dum = new Node1(-1);
     dum.next = root;
     while (root != null) {
-      Node tmp = new Node(-1);
-      Node cur = tmp;
+      Node1 tmp = new Node1(-1);
+      Node1 cur = tmp;
       while (root != null) {
         if (root.left != null) {
           cur.next = root.left;
@@ -29,19 +29,19 @@ public class BreadthTraverse {
   }
 }
 
-class Node {
+class Node1 {
   public int val;
-  public Node left;
-  public Node right;
-  public Node next;
+  public Node1 left;
+  public Node1 right;
+  public Node1 next;
 
-  public Node() {}
+  public Node1() {}
 
-  public Node(int _val) {
+  public Node1(int _val) {
     val = _val;
   }
 
-  public Node(int _val, Node _left, Node _right, Node _next) {
+  public Node1(int _val, Node1 _left, Node1 _right, Node1 _next) {
     val = _val;
     left = _left;
     right = _right;
